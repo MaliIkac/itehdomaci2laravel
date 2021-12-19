@@ -14,7 +14,7 @@ class Clip extends Model
         'user_id',
         'description',
         'length',
-        'category',
+        'category_id',
         'tags'
     ];
 

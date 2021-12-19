@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\Clip;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +16,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $users = User::factory()->count(50)->create();
+        $categories = Category::factory()->count(10)->create();
+
+        for ($i = 0; $i < 70; $i++) {
+            Clip::factory()->create([
+                'user_id' => $users[rand(0, sizeof($users) - 1)],
+                'category_id' => $categories[rand(0, sizeof($categories) - 1)]
+            ]);
+        }
     }
 }
